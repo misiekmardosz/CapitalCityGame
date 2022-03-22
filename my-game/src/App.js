@@ -1,6 +1,8 @@
 import logo from './logo.svg';
+// import "./scss/main.scss";
 import './App.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {clear} from "@testing-library/user-event/dist/clear";
 const countrys = [
     {
         country: "Brazil",
@@ -19,7 +21,12 @@ const countrys = [
         capital: "Londyn"
     }]
 function App() {
-    const [answear, setAnswear] = useState();
+    const [answear, setAnswear] = useState(undefined);
+    const [correct, setCorrect] = useState(0);
+    const [wrong, setWrong] = useState(3);
+    // const hearts = [...wrong]
+    console.log(wrong);
+
 
     function getCapitals(input, field) {
         var output = [];
@@ -58,31 +65,59 @@ function App() {
             return <h1>DOBRZE!</h1>;
         }
         else if (answear === false)
-            return <h1>JESTEŚ ŁOSIEM</h1>;
+            return <h1>Źle!</h1>;
         else
             return <></>
     }
+    function RenderHearts() {
+        if (wrong === 3) {
+            return(
+                <>
+                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}>heart</div>
+                </>
+            );
+        }
+        else if (wrong === 2) {
+            return(
+                <>
+                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}>heart</div>
+                </>
+            );
+        }
+        else if (wrong === 1) {
+            return(
+                <>
+                    <div className={"heart"}>heart</div>
+                </>
+            );
+        }
+        else <></>
+    }
+
+    setTimeout(() => {
+        setAnswear(undefined)
+    }, 2000);
 
     const capital1 = countrys[randomIndex]
-    setTimeout(() => {
-        console.log('Hello, World!')
-    }, 3000);
-
     const handleClick = (e, item) => {
-        e.preventDefault()
         console.log(item)
-        if (`${item}` == `${capital1.capital}`){
+        if (item === capital1.capital){
             setAnswear(true)
+            setCorrect((prevState)=>prevState + 1)
             setTimeout()
         }
 
         else{
             setAnswear(false)
+            setWrong((prevState) =>prevState - 1)
             setTimeout()
         }
-
     }
-    console.log(answear)
+    console.log(correct)
+
 
 
     let getRandomElement = makeGetRandomElement();
@@ -90,14 +125,32 @@ function App() {
     const capital3 = getRandomElement()
     const capital4 = getRandomElement()
     const capilatList = [capital1.capital,capital2,capital3,capital4].sort(() => Math.random() - Math.random())
-
+    if(answear===undefined)
     return (
     <div className="App">
       <h1>{capital1.country}</h1>
         {capilatList.map((item, key)=><button key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
         <RenderAnswear/>
+        <RenderHearts/>
+        <h4>{correct}</h4>
     </div>
   );
+    else if (wrong===0)
+        return (
+            <>
+                <h3>JESTEŚ ŁOSIEM</h3>
+                <h4>Twój Wynik = {correct}</h4>
+            </>
+
+        );
+    else
+    return (
+        <div className="App">
+            <RenderAnswear/>
+            <RenderHearts/>
+            <h4>{correct}</h4>
+        </div>
+    );
 }
 
 export default App;
