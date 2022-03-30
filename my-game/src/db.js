@@ -31,7 +31,7 @@ const countrys = [
     {country:"Madagaskar",capital:"Antananarywa"},
     {country:"Malawi",capital:"Lilongwe"},
     {country:"Mali",capital:"Bamako"},
-    {country:"Marok",capital:"Rabat"},
+    {country:"Maroko",capital:"Rabat"},
     {country:"Mauretania",capital:"Nawakszut"},
     {country:"Mauritius",capital:"Port Louis"},
     {country:"Mozambik",capital:"Maputo"},
