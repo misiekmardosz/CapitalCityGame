@@ -1,25 +1,11 @@
 import logo from './logo.svg';
-// import "./scss/main.scss";
+// import "../scss/main.scss";
+import countrys from "./db";
+
 import './App.css';
+// import '../scss/main.scss'
 import {useEffect, useState} from "react";
 import {clear} from "@testing-library/user-event/dist/clear";
-const countrys = [
-    {
-        country: "Brazil",
-        capital: "Rio"
-    },{
-        country: "Poland",
-        capital: "Warszawa"
-    },{
-        country: "Belgia",
-        capital: "Bruksela"
-    },{
-        country: "Holandia",
-        capital: "Amsterdam"
-    },{
-        country: "Anglia",
-        capital: "Londyn"
-    }]
 function App() {
     const [answear, setAnswear] = useState(undefined);
     const [correct, setCorrect] = useState(0);
@@ -107,16 +93,20 @@ function App() {
         if (item === capital1.capital){
             setAnswear(true)
             setCorrect((prevState)=>prevState + 1)
-            setTimeout()
+            countrys.splice(randomIndex,1)
+            // setTimeout()
+            clear(setTimeout)
         }
 
         else{
             setAnswear(false)
             setWrong((prevState) =>prevState - 1)
-            setTimeout()
+            // setTimeout()
+            countrys.splice(randomIndex,1)
+            clear(setTimeout)
         }
     }
-    console.log(correct)
+    // console.log(correct)
 
 
 
@@ -129,17 +119,21 @@ function App() {
     return (
     <div className="App">
       <h1>{capital1.country}</h1>
-        {capilatList.map((item, key)=><button key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
+        <div className={"button--container"}>
+            {capilatList.map((item, key)=><button className={"button"} key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
+        </div>
         <RenderAnswear/>
-        <RenderHearts/>
-        <h4>{correct}</h4>
+        <div className={'hearts'}>
+            <RenderHearts/>
+        </div>
+        <h4>Twój Wynik = {correct}</h4>
     </div>
   );
     else if (wrong===0)
         return (
             <>
                 <h3>JESTEŚ ŁOSIEM</h3>
-                <h4>Twój Wynik = {correct}</h4>
+                <h4 className={'score'}>Twój Wynik = {correct}</h4>
             </>
 
         );

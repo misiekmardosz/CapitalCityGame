@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .App-logo {
@@ -36,8 +37,33 @@
     transform: rotate(360deg);
   }
 }
+h1{
+  font-size: 120px;
+}
 .heart{
   height: 90px;
   width: 100px;
   background: url("../public/Love_Hear.png") center/contain;
 }
+.button--container{
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+}
+.button{
+  font-size: 60px;
+  border-radius: 10px;
+  background: #70bfff;
+  width: 700px;
+  height: 200px;
+  margin: 20px;
+  padding: 10px;
+}
+h4{
+  font-size: 100px;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+.heart
