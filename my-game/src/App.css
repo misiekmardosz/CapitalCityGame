@@ -84,8 +84,8 @@ h1{
   font-size: 30px;
   background: Yellow;
   position: absolute;
-  right: 100px;
-  top: 250px;
+  right: 800px;
+  top: 350px;
   width: 200px;
   height: 100px;
 }
@@ -96,4 +96,23 @@ h6{
   color: yellow;
   font-size: 200px;
   text-align: center;
+}
+
+.wrongCountry{
+  color: red;
+}
+.score2{
+  font-size: 120px;
+  width: 100%;
+  margin:0;
+  position: absolute;
+  text-align: center;
+  background: yellow;
+  bottom: 300px;
+  right: 10px;
+}
+.end2{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../public/król.webp");
 }

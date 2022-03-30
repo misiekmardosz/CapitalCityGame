@@ -10,13 +10,23 @@ function App() {
     const [answear, setAnswear] = useState(undefined);
     const [correct, setCorrect] = useState(0);
     const [wrong, setWrong] = useState(3);
+    const [wrongConutry, setWrongCountry]= useState('')
+    const [bestScore, setBestScore]= useState(false)
     // const [start, setStart] = useState(true)
     // const hearts = [...wrong]
-    console.log(wrong);
+    // console.log(wrong);
+    const randomIndex = getRandomIndex()
 
+    // function handleHelp() {
+    //     const capitalListHelped = capitalList.splice(1,1)
+    //     return capitalListHelped
+    // }
     function refreshPage() {
         window.location.reload(false);
     }
+
+    // console.log(capitalList)
+
 
 
     function getCapitals(input, field) {
@@ -25,7 +35,7 @@ function App() {
             output.push(input[i][field]);
         return output;
     }
-    const randomIndex = getRandomIndex()
+
     let capitals = getCapitals(countrys, "capital");
     capitals.splice(`${randomIndex}`,1)
     // console.log(capitals)
@@ -51,12 +61,18 @@ function App() {
         let number = Math.floor(Math.random() * countrys.length)
         return number
     }
+
     function RenderAnswear() {
         if (answear === true) {
             return <h1>DOBRZE!</h1>;
         }
         else if (answear === false)
-            return <h1>Źle!</h1>;
+            return(
+                <>
+                    <h1>Źle! poprawna odpowiedź to</h1>
+                    <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
+                </>
+            );
         else
             return <></>
     }
@@ -106,50 +122,68 @@ function App() {
             setAnswear(undefined)
         }, 2000);
     }
-
-    const setStart = () => {
+    const setDefaultWrong = (e) => {
         const timer = setTimeout(() => {
-            function refreshPage() {
-                window.location.reload(false);
-            }
-        }, 2000);
+            setAnswear(undefined)
+        }, 4000);
     }
+
+
+    // const setStart = () => {
+    //     const timer = setTimeout(() => {
+    //         function refreshPage() {
+    //             window.location.reload(false);
+    //         }
+    //     }, 2000);
+    // }
 
 
 
 
     const capital1 = countrys[randomIndex]
     const handleClick = (e, item) => {
-        console.log(item)
-        if (item === capital1.capital && wrong !==0){
+        // console.log(item)
+        if (item === capital1.capital){
+            e.preventDefault()
+            setWrongCountry(capital1)
             setAnswear(true)
             setCorrect((prevState)=>prevState + 1)
             countrys.splice(randomIndex,1)
             setDefault()
         }
-
-        else{
+        else if (item !== capital1.capital && wrong === 1){
+            e.preventDefault()
             setAnswear(false)
             setWrong((prevState) =>prevState - 1)
             countrys.splice(randomIndex,1)
-            setDefault()
+            setWrongCountry(capital1)
+        }
+
+
+        else{
+            e.preventDefault()
+            setAnswear(false)
+            setWrong((prevState) =>prevState - 1)
+            countrys.splice(randomIndex,1)
+            setDefaultWrong()
+            setWrongCountry(capital1)
         }
     }
-
+    // console.log(wrongConutry)
+    console.log(bestScore);
 
 
     let getRandomElement = makeGetRandomElement();
     const capital2 = getRandomElement()
     const capital3 = getRandomElement()
     const capital4 = getRandomElement()
-    const capilatList = [capital1.capital,capital2,capital3,capital4].sort(() => Math.random() - Math.random())
+    const capitalList = [capital1.capital,capital2,capital3,capital4].sort(() => Math.random() - Math.random())
     if(answear===undefined)
     return (
     <div className="App">
       <h1>{capital1.country}</h1>
-        <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
         <div className={"button--container"}>
-            {capilatList.map((item, key)=><button className={"button"} key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
+            {capitalList.map((item, key)=><button className={"button"} key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
         </div>
         <RenderAnswear/>
         <div className={'hearts'}>
@@ -158,12 +192,23 @@ function App() {
         <h4 className={"score"}>Twój Wynik = {correct}</h4>
     </div>
   );
-    else if (wrong===0)
+    else if (wrong===0 && correct<=14)
         return (
             <>
                 <div className={"end"}>
-                    <h6>JESTEŚ ŁOSIEM</h6>
-                    <h4 className={'score'}>Twój Wynik = {correct}</h4>
+                    <h6>jesteś łośiem</h6>
+                    <h4 className={'score2'}>Twój Wynik = {correct}</h4>
+                    <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                </div>
+
+            </>
+        );
+    else if (wrong===0 && correct>14)
+        return (
+            <>
+                <div className={"end2"}>
+                    <h6>jesteś królem</h6>
+                    <h4 className={'score2'}>Twój Wynik = {correct}</h4>
                     <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
                 </div>
 
