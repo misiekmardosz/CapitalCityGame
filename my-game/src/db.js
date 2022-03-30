@@ -59,7 +59,7 @@ const countrys = [
     //Ameryka południowa//
 
     {country:"Argentyna",capital:"Buenos Aires"},
-    {country:"Boliwia",capital:"Sucre"},
+    {country:"Boliwia",capital:"La Paz"},
     {country:"Brazylia",capital:"Brasília"},
     {country:"Chile",capital:"Santiago de Chile"},
     {country:"Ekwador",capital:"Quito"},

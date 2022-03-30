@@ -60,10 +60,40 @@ h1{
   margin: 20px;
   padding: 10px;
 }
-h4{
+.score{
   font-size: 100px;
+  width: 100%;
+  margin:0;
   position: absolute;
-  bottom: 0px;
+  bottom: -200px;
   right: 10px;
 }
-.heart
+.hearts{
+  left: 100px;
+  position: absolute;
+  top:300px;
+}
+.end{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../public/los.jpeg");
+}
+
+.new--game{
+  border-radius: 10px;
+  font-size: 30px;
+  background: Yellow;
+  position: absolute;
+  right: 100px;
+  top: 250px;
+  width: 200px;
+  height: 100px;
+}
+h6{
+  width: 100%;
+  text-decoration: ;
+  margin: 0;
+  color: yellow;
+  font-size: 200px;
+  text-align: center;
+}

@@ -10,8 +10,13 @@ function App() {
     const [answear, setAnswear] = useState(undefined);
     const [correct, setCorrect] = useState(0);
     const [wrong, setWrong] = useState(3);
+    // const [start, setStart] = useState(true)
     // const hearts = [...wrong]
     console.log(wrong);
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
 
 
     function getCapitals(input, field) {
@@ -23,8 +28,8 @@ function App() {
     const randomIndex = getRandomIndex()
     let capitals = getCapitals(countrys, "capital");
     capitals.splice(`${randomIndex}`,1)
-    console.log(capitals)
-    console.log(countrys);
+    // console.log(capitals)
+    // console.log(countrys);
 
     function makeGetRandomElement() {
         let arr;
@@ -59,54 +64,77 @@ function App() {
         if (wrong === 3) {
             return(
                 <>
-                    <div className={"heart"}>heart</div>
-                    <div className={"heart"}>heart</div>
-                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}></div>
+                    <div className={"heart"}></div>
+                    <div className={"heart"}></div>
                 </>
             );
         }
         else if (wrong === 2) {
             return(
                 <>
-                    <div className={"heart"}>heart</div>
-                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}></div>
+                    <div className={"heart"}></div>
                 </>
             );
         }
         else if (wrong === 1) {
             return(
                 <>
-                    <div className={"heart"}>heart</div>
+                    <div className={"heart"}></div>
                 </>
             );
         }
-        else <></>
+        else
+            return <></>
+    }
+    //
+    // function myStopFunction() {
+    //     clearTimeout(myTimeout);
+    // }
+    // const endGame = () => {
+    //   setAnswear(undefined)
+    // }
+    //
+    // if (wrong === 0) myStopFunction() && clearTimeout() && endGame() && setWrong(3)
+
+    // setMainState(() => {
+    //     setAnswear(undefined)
+    // });
+    const setDefault = (e) => {
+        const timer = setTimeout(() => {
+            setAnswear(undefined)
+        }, 2000);
     }
 
-    setTimeout(() => {
-        setAnswear(undefined)
-    }, 2000);
+    const setStart = () => {
+        const timer = setTimeout(() => {
+            function refreshPage() {
+                window.location.reload(false);
+            }
+        }, 2000);
+    }
+
+
+
 
     const capital1 = countrys[randomIndex]
     const handleClick = (e, item) => {
         console.log(item)
-        if (item === capital1.capital){
+        if (item === capital1.capital && wrong !==0){
             setAnswear(true)
             setCorrect((prevState)=>prevState + 1)
             countrys.splice(randomIndex,1)
-            // setTimeout()
-            clear(setTimeout)
+            setDefault()
         }
 
         else{
             setAnswear(false)
             setWrong((prevState) =>prevState - 1)
-            // setTimeout()
             countrys.splice(randomIndex,1)
-            clear(setTimeout)
+            setDefault()
         }
     }
-    // console.log(correct)
 
 
 
@@ -119,6 +147,7 @@ function App() {
     return (
     <div className="App">
       <h1>{capital1.country}</h1>
+        <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
         <div className={"button--container"}>
             {capilatList.map((item, key)=><button className={"button"} key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
         </div>
@@ -126,23 +155,28 @@ function App() {
         <div className={'hearts'}>
             <RenderHearts/>
         </div>
-        <h4>Twój Wynik = {correct}</h4>
+        <h4 className={"score"}>Twój Wynik = {correct}</h4>
     </div>
   );
     else if (wrong===0)
         return (
             <>
-                <h3>JESTEŚ ŁOSIEM</h3>
-                <h4 className={'score'}>Twój Wynik = {correct}</h4>
-            </>
+                <div className={"end"}>
+                    <h6>JESTEŚ ŁOSIEM</h6>
+                    <h4 className={'score'}>Twój Wynik = {correct}</h4>
+                    <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                </div>
 
+            </>
         );
     else
     return (
         <div className="App">
             <RenderAnswear/>
-            <RenderHearts/>
-            <h4>{correct}</h4>
+            <div className={'hearts'}>
+                <RenderHearts/>
+            </div>
+            <h4 className={"score"}>Twój Wynik = {correct}</h4>
         </div>
     );
 }
