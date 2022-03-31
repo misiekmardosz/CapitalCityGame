@@ -1,17 +1,23 @@
 import logo from './logo.svg';
 // import "../scss/main.scss";
 import countrys from "./db";
+import {Score} from "./database/score";
 
 import './App.css';
 // import '../scss/main.scss'
+
 import {useEffect, useState} from "react";
 import {clear} from "@testing-library/user-event/dist/clear";
+const API_URL = "http://localhost:3000";
+
 function App() {
     const [answear, setAnswear] = useState(undefined);
     const [correct, setCorrect] = useState(0);
     const [wrong, setWrong] = useState(3);
     const [wrongConutry, setWrongCountry]= useState('')
     const [bestScore, setBestScore]= useState(false)
+    const [loading, setLoading] = useState(false);
+    const [score, setScore] = useState(0)
     // const [start, setStart] = useState(true)
     // const hearts = [...wrong]
     // console.log(wrong);
@@ -25,7 +31,62 @@ function App() {
         window.location.reload(false);
     }
 
+
+
+    useEffect(() => {
+        setLoading(true);
+        fetch(`${API_URL}/scores`)
+            .then((response) => response.json())
+            .then((data) => {
+                setScore(data);
+                setLoading(false);
+            });
+    }, []);
+    console.log(score);
+
     // console.log(capitalList)
+
+    // const score = {
+    //     id: 8,
+    //     name: "Kuba",
+    //     score: correct,
+    // };
+    const newBestScore = ()=>{
+        const score = {
+            score: correct
+        }
+        fetch(`${API_URL}/scores`, {
+            method: "PATCH",
+            body: JSON.stringify(score),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(score => {
+                console.log(score);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+    // const addNewScore = () => {
+    //     const score = new Score(score);
+    //     fetch(`${API_URL}/scores`, {
+    //         method: 'POST',
+    //         body: JSON.stringify(score),
+    //         headers: {
+    //             'Content-type': 'application/json',
+    //         },
+    //     })
+    //         .then((resp) => resp.json())
+    //         .then((newScore) => {
+    //             setScore(score);
+    //         });
+    // };
+
+
+
 
 
 
@@ -157,6 +218,7 @@ function App() {
             setWrong((prevState) =>prevState - 1)
             countrys.splice(randomIndex,1)
             setWrongCountry(capital1)
+            newBestScore()
         }
 
 
@@ -199,6 +261,7 @@ function App() {
                     <h6>jesteś łośiem</h6>
                     <h4 className={'score2'}>Twój Wynik = {correct}</h4>
                     <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                    <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
                 </div>
 
             </>
@@ -210,6 +273,7 @@ function App() {
                     <h6>jesteś królem</h6>
                     <h4 className={'score2'}>Twój Wynik = {correct}</h4>
                     <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                    <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
                 </div>
 
             </>

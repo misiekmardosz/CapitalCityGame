@@ -132,7 +132,7 @@ const countrys = [
     {country:"Indonezja",capital:"Dżakarta"},
     {country:"Irak",capital:"Bagdad"},
     {country:"Iran",capital:"Teheran"},
-    {country:"Izrael",capital:"Tel Awiw-Jafa"},
+    {country:"Izrael",capital:"Jerozolima"},
     {country:"Japonia",capital:"Tokio"},
     {country:"Jemen",capital:"Sana"},
     {country:"Jordania",capital:"Amman"},
