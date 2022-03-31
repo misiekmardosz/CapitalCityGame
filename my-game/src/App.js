@@ -17,7 +17,7 @@ function App() {
     const [wrongConutry, setWrongCountry]= useState('')
     const [bestScore, setBestScore]= useState(false)
     const [loading, setLoading] = useState(false);
-    const [score, setScore] = useState(0)
+    const [score, setScore] = useState({score:correct})
     // const [start, setStart] = useState(true)
     // const hearts = [...wrong]
     // console.log(wrong);
@@ -52,19 +52,16 @@ function App() {
     //     score: correct,
     // };
     const newBestScore = ()=>{
-        const score = {
-            score: correct
-        }
-        fetch(`${API_URL}/scores`, {
+        fetch(`${API_URL}/scores/1`, {
             method: "PATCH",
-            body: JSON.stringify(score),
+            body: JSON.stringify(correct),
             headers: {
                 "Content-Type": "application/json"
             }
         })
             .then(response => response.json())
-            .then(score => {
-                console.log(score);
+            .then((correct) => {
+                setScore({score: correct})
             })
             .catch(error => {
                 console.log(error);
@@ -181,13 +178,15 @@ function App() {
     const setDefault = (e) => {
         const timer = setTimeout(() => {
             setAnswear(undefined)
-        }, 2000);
+        }, 200);
     }
     const setDefaultWrong = (e) => {
         const timer = setTimeout(() => {
             setAnswear(undefined)
-        }, 4000);
+        }, 400);
     }
+
+
 
 
     // const setStart = () => {
@@ -254,11 +253,11 @@ function App() {
         <h4 className={"score"}>Twój Wynik = {correct}</h4>
     </div>
   );
-    else if (wrong===0 && correct<=14)
+    else if (wrong===0 && correct<=193)
         return (
             <>
                 <div className={"end"}>
-                    <h6>jesteś łośiem</h6>
+                    <h6>jesteś łosiem</h6>
                     <h4 className={'score2'}>Twój Wynik = {correct}</h4>
                     <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
                     <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
@@ -266,7 +265,7 @@ function App() {
 
             </>
         );
-    else if (wrong===0 && correct>14)
+    else if (wrong===0 && correct>193)
         return (
             <>
                 <div className={"end2"}>

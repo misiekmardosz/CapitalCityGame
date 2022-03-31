@@ -168,7 +168,7 @@ const countrys = [
     //Europa//
 
     {country:"Albania",capital:"Tirana"},
-    {country:"Andora",capital:"Andorra"},
+    {country:"Andora",capital:"Andora"},
     {country:"Austria",capital:"Wiedeń"},
     {country:"Belgia",capital:"Bruksela"},
     {country:"Białoruś",capital:"Mińsk"},
