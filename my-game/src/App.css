@@ -89,6 +89,9 @@ h1{
   width: 200px;
   height: 100px;
 }
+.new--game:first-of-type{
+  right: 600px;
+}
 h6{
   width: 100%;
   text-decoration: ;

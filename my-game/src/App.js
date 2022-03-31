@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 // import "../scss/main.scss";
 import countrys from "./db";
-import {Score} from "./database/score";
 
 import './App.css';
 // import '../scss/main.scss'
@@ -15,75 +14,105 @@ function App() {
     const [correct, setCorrect] = useState(0);
     const [wrong, setWrong] = useState(3);
     const [wrongConutry, setWrongCountry]= useState('')
-    const [bestScore, setBestScore]= useState(false)
+    const [bestScore, setBestScore]= useState([{id:0,score:0},{id:0,score:0},{id:0,score:0}])
     const [loading, setLoading] = useState(false);
-    const [score, setScore] = useState({score:correct})
-    // const [start, setStart] = useState(true)
-    // const hearts = [...wrong]
-    // console.log(wrong);
+    const [player, setPlayer] = useState('kuba')
+
+    // bestScore.sort((a,b) => (a.score > b.score) ? 1 : ((b.score > a.score) ? -1 : 0))
+    // console.log(bestScore);
+    console.log(player);
+    // const [score, setScore] = useState([{score:correct}])
     const randomIndex = getRandomIndex()
-
-    // function handleHelp() {
-    //     const capitalListHelped = capitalList.splice(1,1)
-    //     return capitalListHelped
-    // }
-    function refreshPage() {
+    function newKubaGame(){
         window.location.reload(false);
+        // const timer = setTimeout(() => {
+        //     setCorrect(0)
+        //     setWrong(3)
+        //     setAnswear(undefined)
+        //     setPlayer('kuba')
+        // }, 400);
     }
-
-
+    function newMisiekGame(){
+        // window.location.reload(false);
+        const timer = setTimeout(() => {
+            setCorrect(0)
+            setWrong(3)
+            setAnswear(undefined)
+            setPlayer('misiek')
+        }, 400);
+    }
 
     useEffect(() => {
         setLoading(true);
         fetch(`${API_URL}/scores`)
             .then((response) => response.json())
             .then((data) => {
-                setScore(data);
+                setBestScore(data);
                 setLoading(false);
             });
     }, []);
-    console.log(score);
+    console.log(bestScore);
 
-    // console.log(capitalList)
-
-    // const score = {
-    //     id: 8,
-    //     name: "Kuba",
-    //     score: correct,
-    // };
-    const newBestScore = ()=>{
+    const newBestScore1 = ()=>{
+        const bestScore = {
+            id:1,
+            score: correct,
+        }
         fetch(`${API_URL}/scores/1`, {
             method: "PATCH",
-            body: JSON.stringify(correct),
+            body: JSON.stringify(bestScore),
             headers: {
                 "Content-Type": "application/json"
             }
         })
             .then(response => response.json())
-            .then((correct) => {
-                setScore({score: correct})
+            .then(bestScore => {
+                console.log(bestScore);
             })
             .catch(error => {
                 console.log(error);
             });
     }
-    // const addNewScore = () => {
-    //     const score = new Score(score);
-    //     fetch(`${API_URL}/scores`, {
-    //         method: 'POST',
-    //         body: JSON.stringify(score),
-    //         headers: {
-    //             'Content-type': 'application/json',
-    //         },
-    //     })
-    //         .then((resp) => resp.json())
-    //         .then((newScore) => {
-    //             setScore(score);
-    //         });
-    // };
-
-
-
+    const newBestScore2 = ()=>{
+        const bestScore = {
+            id:2,
+            score: correct,
+        }
+        fetch(`${API_URL}/scores/2`, {
+            method: "PATCH",
+            body: JSON.stringify(bestScore),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(bestScore => {
+                console.log(bestScore);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+    const newBestScore3 = ()=>{
+        const bestScore = {
+            id:3,
+            score: correct,
+        }
+        fetch(`${API_URL}/scores/3`, {
+            method: "PATCH",
+            body: JSON.stringify(bestScore),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(bestScore => {
+                console.log(bestScore);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
 
 
@@ -162,19 +191,6 @@ function App() {
         else
             return <></>
     }
-    //
-    // function myStopFunction() {
-    //     clearTimeout(myTimeout);
-    // }
-    // const endGame = () => {
-    //   setAnswear(undefined)
-    // }
-    //
-    // if (wrong === 0) myStopFunction() && clearTimeout() && endGame() && setWrong(3)
-
-    // setMainState(() => {
-    //     setAnswear(undefined)
-    // });
     const setDefault = (e) => {
         const timer = setTimeout(() => {
             setAnswear(undefined)
@@ -185,21 +201,6 @@ function App() {
             setAnswear(undefined)
         }, 400);
     }
-
-
-
-
-    // const setStart = () => {
-    //     const timer = setTimeout(() => {
-    //         function refreshPage() {
-    //             window.location.reload(false);
-    //         }
-    //     }, 2000);
-    // }
-
-
-
-
     const capital1 = countrys[randomIndex]
     const handleClick = (e, item) => {
         // console.log(item)
@@ -211,16 +212,37 @@ function App() {
             countrys.splice(randomIndex,1)
             setDefault()
         }
-        else if (item !== capital1.capital && wrong === 1){
+        // else if (item !== capital1.capital && wrong === 1 && correct <= bestScore[0].score){
+        //     e.preventDefault()
+        //     setAnswear(false)
+        //     setWrong((prevState) =>prevState - 1)
+        //     countrys.splice(randomIndex,1)
+        //     setWrongCountry(capital1)
+        // }
+        else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score){
             e.preventDefault()
             setAnswear(false)
             setWrong((prevState) =>prevState - 1)
             countrys.splice(randomIndex,1)
             setWrongCountry(capital1)
-            newBestScore()
+            newBestScore1()
         }
-
-
+        // else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score && player==="misiek"){
+        //     e.preventDefault()
+        //     setAnswear(false)
+        //     setWrong((prevState) =>prevState - 1)
+        //     countrys.splice(randomIndex,1)
+        //     setWrongCountry(capital1)
+        //     newBestScore2()
+        // }
+        // else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score){
+        //     e.preventDefault()
+        //     setAnswear(false)
+        //     setWrong((prevState) =>prevState - 1)
+        //     countrys.splice(randomIndex,1)
+        //     setWrongCountry(capital1)
+        //     newBestScore3()
+        // }
         else{
             e.preventDefault()
             setAnswear(false)
@@ -230,9 +252,6 @@ function App() {
             setWrongCountry(capital1)
         }
     }
-    // console.log(wrongConutry)
-    console.log(bestScore);
-
 
     let getRandomElement = makeGetRandomElement();
     const capital2 = getRandomElement()
@@ -242,6 +261,7 @@ function App() {
     if(answear===undefined)
     return (
     <div className="App">
+        {/*<h2>Gra {player}</h2>*/}
       <h1>{capital1.country}</h1>
         <div className={"button--container"}>
             {capitalList.map((item, key)=><button className={"button"} key={key} onClick={ (e) => handleClick(e,item)}>{item}</button>)}
@@ -251,28 +271,33 @@ function App() {
             <RenderHearts/>
         </div>
         <h4 className={"score"}>Twój Wynik = {correct}</h4>
+        <h2 className={'best--score'}>najlepszy wynik {bestScore[0].score}</h2>
+        {/*<h2 className={'best--score'}>najlepszy wynik Miśka {bestScore[1].score}</h2>*/}
     </div>
   );
-    else if (wrong===0 && correct<=193)
+    else if (wrong===0 && correct<= bestScore[0].score)
         return (
             <>
                 <div className={"end"}>
                     <h6>jesteś łosiem</h6>
                     <h4 className={'score2'}>Twój Wynik = {correct}</h4>
-                    <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                    <button className={'new--game'} onClick={newKubaGame}>Nowa Gra</button>
+                    {/*<button className={'new--game'} onClick={newMisiekGame}>Nowa Gra Misiek</button>*/}
                     <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
                 </div>
 
             </>
         );
-    else if (wrong===0 && correct>193)
+    else if (wrong===0 && correct> bestScore[0].score)
         return (
             <>
                 <div className={"end2"}>
                     <h6>jesteś królem</h6>
                     <h4 className={'score2'}>Twój Wynik = {correct}</h4>
-                    <button className={'new--game'} onClick={refreshPage}>Nowa Gra</button>
+                    <button className={'new--game'} onClick={newKubaGame}>Nowa Gra</button>
+                    {/*<button className={'new--game'} onClick={newMisiekGame}>Nowa Gra Misiek</button>*/}
                     <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
+
                 </div>
 
             </>
