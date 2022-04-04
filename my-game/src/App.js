@@ -194,17 +194,17 @@ function App() {
     const setDefault = (e) => {
         const timer = setTimeout(() => {
             setAnswear(undefined)
-        }, 200);
+        }, 2000);
     }
     const setDefaultWrong = (e) => {
         const timer = setTimeout(() => {
             setAnswear(undefined)
-        }, 400);
+        }, 4000);
     }
     const capital1 = countrys[randomIndex]
     const handleClick = (e, item) => {
         // console.log(item)
-        if (item === capital1.capital){
+        if (item === capital1.capital && capitals.length > 0){
             e.preventDefault()
             setWrongCountry(capital1)
             setAnswear(true)
@@ -212,14 +212,22 @@ function App() {
             countrys.splice(randomIndex,1)
             setDefault()
         }
-        // else if (item !== capital1.capital && wrong === 1 && correct <= bestScore[0].score){
-        //     e.preventDefault()
-        //     setAnswear(false)
-        //     setWrong((prevState) =>prevState - 1)
-        //     countrys.splice(randomIndex,1)
-        //     setWrongCountry(capital1)
-        // }
-        else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score){
+        else if (item !== capital1.capital && wrong === 1 && correct <= bestScore[0].score && capitals.length > 0){
+            e.preventDefault()
+            setAnswear(false)
+            setWrong((prevState) =>prevState - 1)
+            countrys.splice(randomIndex,1)
+            setWrongCountry(capital1)
+        }
+        else if (capitals.length === 0){
+            e.preventDefault()
+            setAnswear(false)
+            setWrong((prevState) =>prevState - 1)
+            countrys.splice(randomIndex,1)
+            setWrongCountry(capital1)
+            newBestScore1()
+        }
+        else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score && capitals.length > 0){
             e.preventDefault()
             setAnswear(false)
             setWrong((prevState) =>prevState - 1)
@@ -252,12 +260,14 @@ function App() {
             setWrongCountry(capital1)
         }
     }
+    console.log(capitals.length);
 
     let getRandomElement = makeGetRandomElement();
     const capital2 = getRandomElement()
     const capital3 = getRandomElement()
     const capital4 = getRandomElement()
     const capitalList = [capital1.capital,capital2,capital3,capital4].sort(() => Math.random() - Math.random())
+    const capitalList2 = [capital1.capital,capital2,capital3].sort(() => Math.random() - Math.random())
     if(answear===undefined)
     return (
     <div className="App">
@@ -298,6 +308,18 @@ function App() {
                     {/*<button className={'new--game'} onClick={newMisiekGame}>Nowa Gra Misiek</button>*/}
                     <h1 className={'wrongCountry'}>{wrongConutry.capital}</h1>
 
+                </div>
+
+            </>
+        );
+    else if (capitals.length === 0)
+        return (
+            <>
+                <div className={"end2"}>
+                    <h6>Wygrałeś Gre!!!</h6>
+                    <h4 className={'score2'}>Twój Wynik = {correct}</h4>
+                    <button className={'new--game'} onClick={newKubaGame}>Nowa Gra</button>
+                    {/*<button className={'new--game'} onClick={newMisiekGame}>Nowa Gra Misiek</button>*/}
                 </div>
 
             </>
