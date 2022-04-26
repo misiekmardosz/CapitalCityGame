@@ -1,123 +1,113 @@
-.App {
-  text-align: center;
-  position: relative;
-}
+/*.App {*/
+/*  text-align: center;*/
+/*  position: relative;*/
+/*}*/
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/*.App-logo {*/
+/*  height: 40vmin;*/
+/*  pointer-events: none;*/
+/*}*/
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*  .App-logo {*/
+/*    animation: App-logo-spin infinite 20s linear;*/
+/*  }*/
+/*}*/
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/*.App-header {*/
+/*  background-color: #282c34;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  font-size: calc(10px + 2vmin);*/
+/*  color: white;*/
+/*}*/
 
-.App-link {
-  color: #61dafb;
-}
+/*.App-link {*/
+/*  color: #61dafb;*/
+/*}*/
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-h1{
-  font-size: 120px;
-}
-.heart{
-  height: 90px;
-  width: 100px;
-  background: url("../public/Love_Hear.png") center/contain;
-}
-.button--container{
-  justify-content: center;
-  width: 100%;
-  display: flex;
-  flex-flow: wrap;
-}
-.button{
-  font-size: 60px;
-  border-radius: 10px;
-  background: #70bfff;
-  width: 700px;
-  height: 200px;
-  margin: 20px;
-  padding: 10px;
-}
-.score{
-  font-size: 100px;
-  width: 100%;
-  margin:0;
-  position: absolute;
-  bottom: -200px;
-  right: 10px;
-}
-.hearts{
-  left: 100px;
-  position: absolute;
-  top:300px;
-}
-.end{
-  width: 100%;
-  height: 100vh;
-  background-image: url("../public/los.jpeg");
-}
+/*@keyframes App-logo-spin {*/
+/*  from {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(360deg);*/
+/*  }*/
+/*}*/
+/*h1{*/
+/*  font-size: 120px;*/
+/*}*/
 
-.new--game{
-  border-radius: 10px;
-  font-size: 30px;
-  background: Yellow;
-  position: absolute;
-  right: 950px;
-  top: 550px;
-  width: 200px;
-  height: 100px;
-}
-.new--game:first-of-type{
-  right: 600px;
-}
-h6{
-  width: 100%;
-  text-decoration: ;
-  margin: 0;
-  color: yellow;
-  font-size: 200px;
-  text-align: center;
-}
+/*.button{*/
+/*  font-size: 60px;*/
+/*  border-radius: 10px;*/
+/*  background: #70bfff;*/
+/*  width: 700px;*/
+/*  height: 200px;*/
+/*  margin: 20px;*/
+/*  padding: 10px;*/
+/*}*/
+/*.score{*/
+/*  font-size: 100px;*/
+/*  width: 100%;*/
+/*  margin:0;*/
+/*  position: absolute;*/
+/*  bottom: -200px;*/
+/*  right: 10px;*/
+/*}*/
+/*.hearts{*/
+/*  left: 100px;*/
+/*  position: absolute;*/
+/*  top:300px;*/
+/*}*/
+/*.end{*/
+/*  width: 100%;*/
+/*  height: 100vh;*/
+/*  background-image: url("../public/los.jpeg");*/
+/*}*/
 
-.wrongCountry{
-  text-align: center;
-  background: white;
-  color: red;
-}
-.score2{
-  font-size: 120px;
-  width: 100%;
-  margin:0;
-  position: absolute;
-  text-align: center;
-  background: yellow;
-  bottom: 300px;
-  right: 10px;
-}
-.end2{
-  width: 100%;
-  height: 100vh;
-  background-image: url("../public/król.jpg");
-}
+/*.new--game{*/
+/*  border-radius: 10px;*/
+/*  font-size: 30px;*/
+/*  background: Yellow;*/
+/*  position: absolute;*/
+/*  right: 950px;*/
+/*  top: 550px;*/
+/*  width: 200px;*/
+/*  height: 100px;*/
+/*}*/
+/*.new--game:first-of-type{*/
+/*  right: 600px;*/
+/*}*/
+/*h6{*/
+/*  width: 100%;*/
+/*  text-decoration: ;*/
+/*  margin: 0;*/
+/*  color: yellow;*/
+/*  font-size: 200px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.wrongCountry{*/
+/*  text-align: center;*/
+/*  background: white;*/
+/*  color: red;*/
+/*}*/
+/*.score2{*/
+/*  font-size: 120px;*/
+/*  width: 100%;*/
+/*  margin:0;*/
+/*  position: absolute;*/
+/*  text-align: center;*/
+/*  background: yellow;*/
+/*  bottom: 300px;*/
+/*  right: 10px;*/
+/*}*/
+/*.end2{*/
+/*  width: 100%;*/
+/*  height: 100vh;*/
+/*  background-image: url("../public/król.jpg");*/
+/*}*/

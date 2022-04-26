@@ -1,0 +1,56 @@
+@import "answer";
+@import "endGame";
+
+.App{
+  display: flex;
+  flex-flow: column;
+  font-family: "Comic Sans MS";
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #9bff9b;
+  height:100vh;
+  position: relative;
+  .question{
+    font-size: 70px;
+    .hearts{
+      display: flex;
+      justify-content: center;
+      margin: 100px;
+    }
+    h1{
+      text-align: center;
+      margin: 0;
+    }
+  }
+  .answers{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-size: 50px;
+    .button--container{
+      justify-content: center;
+      max-width: 1500px;
+      width: 100%;
+      flex-flow: wrap;
+    }
+  }
+}
+
+.heart{
+  height: 90px;
+  width: 100px;
+  background: url("../../public/Love_Hear.png") center/contain;
+}
+.button{
+  font-family: "Comic Sans MS";
+  font-size: 60px;
+  border-radius: 10px;
+  border: 10px solid #ab0000;
+  box-shadow: 0px 0px 24px 0px rgba(66, 68, 90, 1);;
+  background: #97c6f6;
+  width: 700px;
+  height: 200px;
+  margin: 20px;
+  padding: 10px;
+}

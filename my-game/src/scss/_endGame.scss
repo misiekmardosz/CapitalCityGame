@@ -1,0 +1,32 @@
+@mixin ending{
+  font-size: 70px;
+  display: flex;
+  flex-flow: column;
+  text-shadow:
+          -1px -1px 0px white,
+          0px -1px 0px white,
+          1px -1px 0px white,
+          -1px  0px 0px white,
+          1px  0px 0px white,
+          -1px  1px 0px white,
+          0px  1px 0px white,
+          1px  1px 0px white;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height:100vh;
+  position: relative;
+}
+
+.end{
+  @include ending;
+  background: url("../../public/favicon.jpeg") center/cover;
+}
+.end2{
+  @include ending;
+  background: url("../../public/król.jpg") center/cover;
+}
+.score2{
+  font-size: 100px;
+}
+
