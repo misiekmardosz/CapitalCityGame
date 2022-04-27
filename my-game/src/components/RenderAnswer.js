@@ -1,14 +1,14 @@
 import React from "react";
 
-const RenderAnswear = ({wrongConutry, answear}) => {
-    if (answear === true) {
+const RenderAnswear = ({wrongCountry, answer}) => {
+    if (answer === true) {
         return <h1 className="good-answer">DOBRZE!</h1>;
     }
-    else if (answear === false)
+    else if (answer === false)
         return(
             <>
                 <h2 className="bad-answer">Źle! poprawna odpowiedź to</h2>
-                <h1 className="good-answer">{wrongConutry.capital}</h1>
+                <h1 className="good-answer">{wrongCountry.capital}</h1>
             </>
         );
     else

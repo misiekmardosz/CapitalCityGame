@@ -1,32 +1,33 @@
-import logo from './logo.svg';
-// import "../scss/main.scss";
-import countrys from "./db";
-import RenderAnswer from "./components/RenderAnswer";
-import RenderHearts from "./components/RenderHearts";
 
-import './App.css';
 import "./scss/main.scss"
-
 import {useEffect, useState} from "react";
-import {clear} from "@testing-library/user-event/dist/clear";
 import MainGame from "./components/MainGame";
+import LostGame from "./components/LostGame";
+import NewBestScore from "./components/NewBestScore";
+import FinishedGame from "./components/FinishedGame";
+import NewAnswer from "./components/NewAnswer";
 const API_URL = "http://localhost:3000";
-
 function App() {
     const [answer, setAnswer] = useState(undefined);
-    const [start, setStart] = useState(true);
     const [correct, setCorrect] = useState(0);
+    const [countries, setCountries] = useState([{}]);
     const [wrong, setWrong] = useState(3);
     const [wrongCountry, setWrongCountry]= useState('')
-    const [bestScore, setBestScore]= useState([{id:0,score:0},{id:0,score:0},{id:0,score:0}])
+    const [bestScore, setBestScore]= useState([{}])
     const [loading, setLoading] = useState(false);
-    // const [player, setPlayer] = useState('kuba')
-
-    console.log(countrys.length);
     const randomIndex = getRandomIndex()
     function newGame(){
         window.location.reload(false);
     }
+    useEffect(() => {
+        setLoading(true);
+        fetch(`${API_URL}/countrys`)
+            .then((response) => response.json())
+            .then((data) => {
+                setCountries(data);
+                setLoading(false);
+            });
+    }, []);
     useEffect(() => {
         setLoading(true);
         fetch(`${API_URL}/scores`)
@@ -36,7 +37,7 @@ function App() {
                 setLoading(false);
             });
     }, []);
-    const newBestScore1 = ()=>{
+    const newBestScore = ()=>{
         const bestScore = {
             id:1,
             score: correct,
@@ -63,7 +64,7 @@ function App() {
         return output;
     }
 
-    let capitals = getCapitals(countrys, "capital");
+    let capitals = getCapitals(countries, "capital");
     capitals.splice(`${randomIndex}`,1)
     function makeGetRandomElement() {
         let arr;
@@ -82,11 +83,11 @@ function App() {
         }
     }
     function getRandomIndex(){
-        let number = Math.floor(Math.random() * countrys.length)
+        let number = Math.floor(Math.random() * countries.length)
         return number
     }
     const setDefault = (e) => {
-        if (countrys.length !==1){
+        if (countries.length !==1){
             const timer = setTimeout(() => {
                 setAnswer(undefined)
             }, 500);
@@ -98,12 +99,12 @@ function App() {
         }, 3000);
     }
 
-    const capital1 = countrys[randomIndex]
+    const capital1 = countries[randomIndex]
     const handleClick = (e, item) => {
         if (item === capital1.capital){
             e.preventDefault()
             setCorrect((prevState)=>prevState + 1)
-            countrys.splice(randomIndex,1)
+            countries.splice(randomIndex,1)
             setWrongCountry(capital1)
             setAnswer(true)
             setDefault()
@@ -111,29 +112,29 @@ function App() {
         else if (item !== capital1.capital && wrong === 1 && correct <= bestScore[0].score){
             e.preventDefault()
             setWrong((prevState) =>prevState - 1)
-            countrys.splice(randomIndex,1)
+            countries.splice(randomIndex,1)
             setWrongCountry(capital1)
             setAnswer(false)
         }
-        else if (countrys.length === 1){
+        else if (countries.length === 1){
             e.preventDefault()
             setWrong((prevState) =>prevState - 1)
             setWrongCountry(capital1)
             setAnswer(false)
-            newBestScore1()
+            newBestScore()
         }
         else if (item !== capital1.capital && wrong === 1 && correct > bestScore[0].score){
             e.preventDefault()
             setWrong((prevState) =>prevState - 1)
-            countrys.splice(randomIndex,1)
+            countries.splice(randomIndex,1)
             setWrongCountry(capital1)
             setAnswer(false)
-            newBestScore1()
+            newBestScore()
         }
         else{
             e.preventDefault()
             setWrong((prevState) =>prevState - 1)
-            countrys.splice(randomIndex,1)
+            countries.splice(randomIndex,1)
             setDefaultWrong()
             setWrongCountry(capital1)
             setAnswer(false)
@@ -157,50 +158,13 @@ function App() {
                   handleClick={handleClick}/>
   );
     else if (wrong===0 && correct<= bestScore[0].score)
-        return (
-            <>
-                <div className={"App"}>
-                    <div className="end">
-                        <h1>jesteś łosiem!</h1>
-                        <h2 className={'wrongCountry'}>poprawna odpowiedź to {wrongCountry.capital}</h2>
-                        <h2 className={'score2'}>Twój Wynik = {correct}</h2>
-                        <button className={'button'} onClick={newGame}>Nowa Gra</button>
-                    </div>
-                </div>
-
-            </>
-        );
+        return <LostGame correct={correct} wrongCountry={wrongCountry} newGame={newGame}/>
     else if (wrong===0 && correct> bestScore[0].score)
-        return (
-            <>
-                <div className={"App"}>
-                    <div className="end2">
-                        <h1>jesteś królem!</h1>
-                        <h2 className={'wrongCountry'}>poprawna odpowiedź to {wrongCountry.capital}</h2>
-                        <h2 className={'score2'}>Twój Wynik = {correct}</h2>
-                        <button className={'button'} onClick={newGame}>Nowa Gra</button>
-                    </div>
-                </div>
-
-            </>
-        );
-    else if (countrys.length === 1)
-        return (
-            <>
-                <div className={"end2"}>
-                    <h6>Wygrałeś Gre!!!</h6>
-                    <h4 className={'score2'}>Twój Wynik = {correct}</h4>
-                    <button className={'button'} onClick={newGame}>Nowa Gra</button>
-                </div>
-
-            </>
-        );
+        return <NewBestScore correct={correct} wrongCountry={wrongCountry} newGame={newGame}/>
+    else if (countries.length === 1)
+        return <FinishedGame correct={correct} newGame={newGame}/>
     else
-    return (
-        <div className="App">
-            <RenderAnswer wrongCountry={wrongCountry} answer={answer}/>
-        </div>
-    );
+        return <NewAnswer answer={answer} wrongCountry={wrongCountry}/>
 }
 
 export default App;
