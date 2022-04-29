@@ -1,6 +1,8 @@
 @import "answer";
 @import "endGame";
-
+body{
+  background: #9bff9b;
+}
 .App{
   display: flex;
   flex-flow: column;
@@ -8,15 +10,14 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: #9bff9b;
-  height:100vh;
+  //height:100vh;
   position: relative;
   .question{
-    font-size: 70px;
+    font-size: 40px;
     .hearts{
       display: flex;
       justify-content: center;
-      margin: 100px;
+      margin: 50px;
     }
     h1{
       text-align: center;
@@ -27,10 +28,10 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    font-size: 50px;
+    font-size: 20px;
     .button--container{
       justify-content: center;
-      max-width: 1500px;
+      max-width: 680px;
       width: 100%;
       flex-flow: wrap;
     }
@@ -38,19 +39,19 @@
 }
 
 .heart{
-  height: 90px;
-  width: 100px;
+  height: 69px;
+  width: 75px;
   background: url("../../public/Love_Hear.png") center/contain;
 }
 .button{
   font-family: "Comic Sans MS";
-  font-size: 60px;
+  font-size: 30px;
   border-radius: 10px;
   border: 10px solid #ab0000;
   box-shadow: 0px 0px 24px 0px rgba(66, 68, 90, 1);;
   background: #97c6f6;
-  width: 700px;
-  height: 200px;
+  width: 300px;
+  height: 100px;
   margin: 20px;
   padding: 10px;
 }

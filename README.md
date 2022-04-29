@@ -35,27 +35,27 @@ it was bootstrapped with [Create React App](https://github.com/facebook/create-r
 ## Screenshots
 Main Game
 
-![Main Game](my-game/public/screenshots/Main%20Game.png)
+![Main Game](public/screenshots/Main%20Game.png)
 
 After Correct Answer
 
-![After Correct Answer](my-game/public/screenshots/Good%20Answer.png)
+![After Correct Answer](public/screenshots/Good%20Answer.png)
 
 After Wrong Answer
 
-![After Wrong Answer](my-game/public/screenshots/Bad%20Answer.png)
+![After Wrong Answer](public/screenshots/Bad%20Answer.png)
 
 Lost Game
 
-![Lost Game](my-game/public/screenshots/Lost%20Game.png)
+![Lost Game](public/screenshots/Lost%20Game.png)
 
 New Record 
 
-![New Record](my-game/public/screenshots/New%20Best%20Score.png)
+![New Record](public/screenshots/New%20Best%20Score.png)
 
 Game Won
 
-![Game Won](my-game/public/screenshots/End%20Game.png)
+![Game Won](public/screenshots/End%20Game.png)
 
 ## Setup
 
