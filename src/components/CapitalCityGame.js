@@ -90,13 +90,13 @@ function CapitalCityGame() {
         if (countries.length !==1){
             const timer = setTimeout(() => {
                 setAnswer(undefined)
-            }, 500);
+            }, 1000);
         }
     }
     const setDefaultWrong = (e) => {
         const timer = setTimeout(() => {
             setAnswer(undefined)
-        }, 3000);
+        }, 4000);
     }
 
     const capital1 = countries[randomIndex]
