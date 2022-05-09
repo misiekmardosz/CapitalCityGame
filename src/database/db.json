@@ -1,11 +1,15 @@
 {
   "scores": [
     {
+      "0": {
+        "id": 1,
+        "score": 0
+      },
       "id": 1,
-      "score": 5
+      "score": 0
     }
   ],
-  "countrys": [
+  "countries": [
     {
       "country": "Algieria",
       "capital": "Algier"
