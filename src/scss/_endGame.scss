@@ -1,22 +1,24 @@
-@mixin ending{
-  font-family: "Comic Sans MS";
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@200;300;500&display=swap');
+
+$game-font: "Mali";
+@mixin ending {
+  font-family: $game-font;
   text-align: center;
   font-size: 30px;
   display: flex;
   flex-flow: column;
-  text-shadow:
-          -3px -3px 0px white,
-          0px -3px 0px white,
-          3px -3px 0px white,
-          -3px  0px 0px white,
-          3px  0px 0px white,
-          -3px  3px 0px white,
-          0px  3px 0px white,
-          3px  3px 0px white;
+  text-shadow: -3px -3px 0px white,
+  0px -3px 0px white,
+  3px -3px 0px white,
+  -3px 0px 0px white,
+  3px 0px 0px white,
+  -3px 3px 0px white,
+  0px 3px 0px white,
+  3px 3px 0px white;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height:100vh;
+  height: 100vh;
   position: relative;
   @media (max-width: 680px) {
     font-size: 20px;
@@ -29,26 +31,33 @@
     0px 1px 0px white,
     1px 1px 0px white;
   }
-  h2{
+  h2 {
     @media (max-width: 680px) {
       font-size: 50px;
     }
   }
 }
 
-.end{
+.end {
   @include ending;
   background: url("../../public/favicon.jpeg") center/cover;
 }
-.end2{
+
+.end2 {
   @include ending;
   background: url("../../public/Lion.jpeg") center/cover;
 }
-.end3{
+
+.end3 {
   @include ending;
   background: url("../../public/król.jpg") center/cover;
+
+  h4 {
+    margin: 0;
+  }
 }
-.score2{
+
+.score2 {
   font-size: 100px;
 }
 

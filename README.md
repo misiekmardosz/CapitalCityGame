@@ -17,9 +17,9 @@ it was bootstrapped with [Create React App](https://github.com/facebook/create-r
 
 * This is a quiz game for children to practice their knowledge of the capitals cities of the world
 * it works like popular quiz games, there is question and 4 potential answers, you can make two mistakes after third is game over
-* it created for desktop only 
+* web app is fully responsive 
 * best score is saved in local JSON server
-* Design is very simple and colorfull  
+* Design is very simple and colorful  
 
 ## Technologies Used
 * React
@@ -68,7 +68,6 @@ Game Won
 
 ## Room for Improvement
 
-* creating version for phones
 * expand the game with versions with country flags
 * add player name and players scores
 

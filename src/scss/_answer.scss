@@ -1,15 +1,18 @@
-.good-answer{
+$game-font: "Mali";
+.good-answer {
   margin: 0;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   font-size: 100px;
+  font-family: $game-font;
   @media (max-width: 680px) {
     font-size: 50px;
   }
 }
-.bad-answer{
+
+.bad-answer {
   text-align: center;
   font-size: 100px;
   @media (max-width: 680px) {

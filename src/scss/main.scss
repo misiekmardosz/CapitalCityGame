@@ -1,41 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@200;300;500&display=swap');
 @import "answer";
 @import "endGame";
-body{
-  background: #9bff9b;
+
+$game-font: "Mali";
+
+body {
+  background: #fff45a;
 }
-.App{
+
+.App {
   min-height: 700px;
   display: flex;
   flex-flow: column;
-  font-family: "Comic Sans MS";
+  font-family: $game-font;
   align-items: center;
   justify-content: center;
   width: 100%;
   //height:100vh;
   position: relative;
-  .question{
+
+  .question {
     font-size: 40px;
-    @media (max-width: 680px){
+    @media (max-width: 680px) {
       font-size: 20px;
       padding-top: 20px;
     }
 
-    .hearts{
+    .hearts {
       display: flex;
       justify-content: center;
       margin: 50px;
     }
-    h1{
+
+    h1 {
       text-align: center;
       margin: 0;
     }
   }
-  .answers{
+
+  .answers {
     display: flex;
     flex-flow: column;
     align-items: center;
     font-size: 20px;
-    .button--container{
+
+    .button--container {
       justify-content: center;
       text-align: center;
       max-width: 680px;
@@ -45,23 +54,24 @@ body{
   }
 }
 
-.heart{
+.heart {
   height: 69px;
   width: 75px;
   background: url("../../public/Love_Hear.png") center/contain;
 }
-.button{
+
+.button {
   font-family: "Comic Sans MS";
   font-size: 30px;
   border-radius: 10px;
-  border: 10px solid #ab0000;
+  border: 3px solid #ab0000;
   box-shadow: 0px 0px 24px 0px rgba(66, 68, 90, 1);;
-  background: #97c6f6;
+  background: #3b8df8;
   width: 300px;
   height: 100px;
   margin: 20px;
   padding: 10px;
-  @media (max-width: 680px){
+  @media (max-width: 680px) {
     font-size: 15px;
     width: 300px;
     height: 70px;
