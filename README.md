@@ -1,7 +1,7 @@
 # CapitalCityGame
 
-CapitalCityGame is a quiz game for children
-it was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CapitalCityGame is a quiz game for children it was bootstrapped
+with [Create React App](https://github.com/facebook/create-react-app).
 
 # Table of Contents
 
@@ -16,23 +16,23 @@ it was bootstrapped with [Create React App](https://github.com/facebook/create-r
 ## General info
 
 * This is a quiz game for children to practice their knowledge of the capitals cities of the world
-* it works like popular quiz games, there is question and 4 potential answers, you can make two mistakes after third is game over
-* web app is fully responsive 
+* it works like popular quiz games, there is question and 4 potential answers, you can make two mistakes after third is
+  game over
+* web app is fully responsive
 * best score is saved in local JSON server
-* Design is very simple and colorful  
+* Design is very simple and colorful
 
 ## Technologies Used
+
 * React
-* React Modal
 * Bootstrap
 * JSON server
 * HTML
 * SCSS
 * JavaScript
 
-
-
 ## Screenshots
+
 Main Game
 
 ![Main Game](public/screenshots/Main%20Game.png)
@@ -49,7 +49,7 @@ Lost Game
 
 ![Lost Game](public/screenshots/Lost%20Game.png)
 
-New Record 
+New Record
 
 ![New Record](public/screenshots/New%20Best%20Score.png)
 
@@ -64,7 +64,6 @@ Game Won
 * Install JSON sevrer / npm install -g json-server
 * Start JSON server on database file by json-server --watch db.json
 * Start app by npm start
-
 
 ## Room for Improvement
 
