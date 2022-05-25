@@ -5,7 +5,7 @@ const FinishedGame = ({ correct, newGame }) => {
     <>
       <div className={"end3"}>
         <h1>Jesteś mistrzem! Wygrałeś Gre!!!</h1>
-        <h4 className={"score2"}>Twój Wynik = 194</h4>
+        <h4 className={"score2"}>Twój Wynik = {correct}</h4>
         <button className={"button"} onClick={newGame}>
           Nowa Gra
         </button>

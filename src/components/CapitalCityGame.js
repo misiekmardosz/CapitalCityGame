@@ -4,6 +4,7 @@ import MainGame from "./MainGame";
 import LostGame from "./LostGame";
 import NewBestScore from "./NewBestScore";
 import FinishedGame from "./FinishedGame";
+import RenderAnswer from "./RenderAnswer";
 
 const API_URL = "http://localhost:3000";
 
@@ -118,7 +119,7 @@ function CapitalCityGame() {
     if (countries.length !== 1) {
       const timer = setTimeout(() => {
         setAnswer(undefined);
-      }, 10000);
+      }, 600);
     } else {
       newBestScore();
     }
@@ -126,7 +127,7 @@ function CapitalCityGame() {
   const setDefaultWrong = (e) => {
     const timer = setTimeout(() => {
       setAnswer(undefined);
-    }, 10000);
+    }, 2000);
   };
 
   const capital1 = countries[randomIndex];
@@ -212,7 +213,7 @@ function CapitalCityGame() {
     );
   else if (countries.length === 1)
     return <FinishedGame correct={correct} newGame={newGame} />;
-  else return <FinishedGame correct={correct} newGame={newGame} />;
+  else return <RenderAnswer wrongCountry={wrongCountry} answer={answer} />;
 }
 
 export default CapitalCityGame;

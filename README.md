@@ -16,8 +16,8 @@ with [Create React App](https://github.com/facebook/create-react-app).
 ## General info
 
 * This is a quiz game for children to practice their knowledge of the capitals cities of the world
-* it works like popular quiz games, there is question and 4 potential answers, you can make two mistakes after third is
-  game over
+* it works like popular quiz games, there is question and 4 potential answers, you can make two mistakes after third
+  game is over
 * web app is fully responsive
 * best score is saved in local JSON server
 * Design is very simple and colorful
